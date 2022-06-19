@@ -1,0 +1,171 @@
+package com.mycompany.antonimosysinonimos;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JOptionPane;
+
+public class AntonimosySinonimos extends javax.swing.JFrame {
+    
+   static String textoAntonimosySinonimos = """
+                                            Sinonimo de Calido\tFrio\tTibio\tCaliente\tCongelado
+                                            Antonimo de Luz\tOscuro\tBrillante\tOpaco\tReluciente""";
+   
+   static String[] renglones = textoAntonimosySinonimos.split("\n");
+   static int cantidadDePreguntas = renglones.length;
+   
+    static String[][] AntonimosySinonimos = new String[cantidadDePreguntas][5];
+    
+    public static void main(String args[]) {
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                   if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }   
+        } catch (Exception ex) {    
+        }
+        for (int i = 0; i < renglones.length; i++) {
+            String renglon = renglones[i];
+            AntonimosySinonimos[i] = renglon.split("\t");
+        }
+
+                new AntonimosySinonimos();
+
+    }
+    
+    String[] preguntaEscogida;
+    String pregunta;
+    String respuesta;
+    ArrayList<String> Opciones = new ArrayList<>();
+    
+    public void escogerPregunta(int n){
+        preguntaEscogida = AntonimosySinonimos[n];
+        pregunta = preguntaEscogida[0];
+        respuesta = preguntaEscogida[1];
+        Opciones.clear();
+        for (int i = 4; i < preguntaEscogida.length; i++){
+            Opciones.add(preguntaEscogida[i]);
+        }
+        for (int i = 0; i<4; i++){
+            Collections.shuffle(Opciones);
+        }
+    }
+
+    public void mostrarPregunta(){
+        jLabel1.setText(pregunta);
+        jButton1.setText(Opciones.get(0));
+        jButton2.setText(Opciones.get(1));
+        jButton3.setText(Opciones.get(2));
+        jButton4.setText(Opciones.get(3));
+    }
+    
+    void escogerRespuesta(int n){
+        if (Opciones.get(n).equals(respuesta)) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Su respuesta es correcta",
+                    "Correcto",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+             JOptionPane.showMessageDialog(
+                     this,
+                     "Su respuesta es incorrecta, la respuesta es: " + respuesta,
+                     "Incorecto",
+                     JOptionPane.ERROR_MESSAGE
+             );
+        }
+    }
+    
+    public void jugar(){
+        escogerPregunta(0);
+        mostrarPregunta();
+    }
+    
+    public AntonimosySinonimos() {
+        initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
+        jugar();
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Palabra");
+
+        jButton1.setText("Boton 1");
+
+        jButton2.setText("Boton 3");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Boton 4");
+
+        jButton4.setText("Boton 2");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+ 
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    // End of variables declaration//GEN-END:variables
+}
